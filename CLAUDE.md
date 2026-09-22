@@ -26,7 +26,8 @@
 - Next.js(App Router) + TypeScript + Tailwind CSS
 - **정적 내보내기(`output: "export"`)**. 결과물은 `out/` 폴더. **서버·데이터베이스 없음**
 - 모든 계산은 **브라우저 안에서만** 수행
-- 배포: **Cloudflare** (GitHub 연동). Vercel 전용 기능(`@vercel/*` 등)은 쓰지 않는다.
+- 배포: **Cloudflare Workers** (Pages 아님). GitHub 연동, Deploy command 는 `npx wrangler deploy`.
+  Vercel 전용 기능(`@vercel/*` 등)은 쓰지 않는다.
 - 방문자 통계는 **Cloudflare Web Analytics** 를 대시보드에서 켠다. 코드로 넣지 않는다.
 - 테스트: Vitest
 
@@ -37,6 +38,11 @@
   빌드할 때 미리 `public/og/*.png` 를 만들어 둔다.
 - `app/sitemap.ts` 와 `app/robots.ts` 에는 `export const dynamic = "force-static"` 이 필요하다.
 - 404 화면은 `app/not-found.tsx` → `out/404.html` 로 만들어진다.
+- Cloudflare 대시보드의 Build command 는 **비워 둔다**. 대신 `wrangler.jsonc` 의
+  `build.command` 가 `npm run build` 를 실행한다. 이렇게 해야 대시보드 설정과 무관하게
+  `npx wrangler deploy` 만으로 배포가 된다.
+- 사이트 주소는 빌드 변수 `NEXT_PUBLIC_SITE_URL` 로 넣는다. 없으면 빌드할 때 경고가 뜨고
+  임시 주소가 쓰인다 (canonical·hreflang·sitemap·OG 이미지 주소에 영향).
 
 ## 3. 개인정보 (절대 규칙)
 - 사용자가 입력한 값은 **어디에도 저장하거나 전송하지 않습니다.**
