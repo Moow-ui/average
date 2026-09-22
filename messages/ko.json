@@ -1,0 +1,36 @@
+{
+  "site": {
+    "name": "나는 세계에서 몇 등?",
+    "tagline": "내 키·몸무게·소득은 세계에서 상위 몇 %일까?",
+    "description": "키, 몸무게, 연소득을 입력하면 세계와 우리나라에서 상위 몇 %인지 알려드립니다. 입력한 값은 어디에도 저장되지 않습니다."
+  },
+  "nav": {
+    "home": "홈",
+    "about": "소개",
+    "sources": "데이터 출처",
+    "privacy": "개인정보처리방침",
+    "terms": "이용약관",
+    "contact": "문의"
+  },
+  "metric": {
+    "height": "키",
+    "weight": "몸무게 · BMI",
+    "income": "연소득"
+  },
+  "metricDesc": {
+    "height": "내 키는 상위 몇 %인지 알아보기",
+    "weight": "내 몸무게와 BMI 위치 알아보기",
+    "income": "내 개인 세전 연소득의 위치 알아보기"
+  },
+  "home": {
+    "chooseMetric": "무엇을 비교해볼까요?",
+    "privacyNote": "입력한 값은 브라우저 안에서만 계산되며 서버로 전송되지 않습니다."
+  },
+  "theme": {
+    "toggle": "밝게/어둡게 전환"
+  },
+  "common": {
+    "dataPending": "데이터 준비 중",
+    "dataPendingDesc": "이 항목의 통계 자료를 확인하는 중입니다. 확인되는 대로 공개합니다."
+  }
+}

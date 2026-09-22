@@ -1,0 +1,36 @@
+{
+  "site": {
+    "name": "Where Do I Rank?",
+    "tagline": "See what percentile your height, weight, and income fall into.",
+    "description": "Enter your height, weight, or annual income to find out what percentile you land in worldwide and in your country. Nothing you type is ever stored or sent anywhere."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "sources": "Data sources",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "contact": "Contact"
+  },
+  "metric": {
+    "height": "Height",
+    "weight": "Weight & BMI",
+    "income": "Annual income"
+  },
+  "metricDesc": {
+    "height": "Find out what percentile your height falls into",
+    "weight": "See where your weight and BMI sit",
+    "income": "See where your personal pre-tax annual income sits"
+  },
+  "home": {
+    "chooseMetric": "What would you like to compare?",
+    "privacyNote": "Everything is calculated in your browser. Your numbers never reach a server."
+  },
+  "theme": {
+    "toggle": "Toggle light and dark mode"
+  },
+  "common": {
+    "dataPending": "Data coming soon",
+    "dataPendingDesc": "We're still verifying the statistics for this one. It'll go live as soon as the figures are confirmed."
+  }
+}
