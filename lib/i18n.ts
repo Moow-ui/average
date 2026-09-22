@@ -66,7 +66,3 @@ export function getTranslator(locale: Locale): Translator {
   return (key: string, params?: TranslationParams) =>
     fill(lookup(dict, key) ?? lookup(ko, key) ?? key, params);
 }
-
-export function getMessages(locale: Locale): Dictionary {
-  return dictionaries[locale];
-}

@@ -83,7 +83,7 @@ export async function generateMetadata({
   const valueText = `${parsed.value}${unitLabel(parsed.metric)}`;
   const replacements = {
     gender: t(`form.${parsed.gender}`),
-    metric: t(`metric.${parsed.metric}`),
+    metric: t(`metricShort.${parsed.metric}`),
     value: valueText,
   };
 
@@ -129,7 +129,7 @@ export default async function ResultPage({
   const valueText = `${parsed.value}${unitLabel(parsed.metric)}`;
   const heading = t("seo.resultTitle", {
     gender: t(`form.${parsed.gender}`),
-    metric: t(`metric.${parsed.metric}`),
+    metric: t(`metricShort.${parsed.metric}`),
     value: valueText,
   });
 
@@ -143,7 +143,7 @@ export default async function ResultPage({
         <p className="text-slate-600 dark:text-slate-300">
           {t("seo.resultDescription", {
             gender: t(`form.${parsed.gender}`),
-            metric: t(`metric.${parsed.metric}`),
+            metric: t(`metricShort.${parsed.metric}`),
             value: valueText,
           })}
         </p>
@@ -239,7 +239,7 @@ export default async function ResultPage({
               href={`/${locale}/${parsed.metric}`}
               className="inline-block rounded-lg border border-slate-200 px-3 py-1.5 text-sm transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
             >
-              {t("metric." + parsed.metric)}
+              {t(`metric.${parsed.metric}`)}
             </Link>
           </li>
         </ul>

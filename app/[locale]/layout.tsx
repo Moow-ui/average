@@ -9,7 +9,6 @@ import LocaleSwitcher from "@/components/LocaleSwitcher";
 import SiteFooter from "@/components/SiteFooter";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
-  getMessages,
   getTranslator,
   htmlLang,
   isLocale,
@@ -61,7 +60,7 @@ export default async function LocaleLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-dvh flex-col">
-        <I18nProvider locale={locale} messages={getMessages(locale)}>
+        <I18nProvider locale={locale}>
           <header className="border-b border-slate-200 dark:border-slate-800">
             <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 px-4 py-3">
               <Link

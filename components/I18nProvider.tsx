@@ -1,7 +1,19 @@
 "use client";
 
 import { createContext, useContext, useMemo } from "react";
+import ko from "@/messages/ko.json";
+import en from "@/messages/en.json";
+import ja from "@/messages/ja.json";
 import type { Locale, TranslationParams, Translator } from "@/lib/i18n";
+
+/**
+ * 문구 묶음은 이 파일에서 직접 불러온다.
+ *
+ * 서버에서 props 로 내려주면 페이지 HTML 마다 문구 전체(약 16KB)가 복사되는데,
+ * 결과 페이지가 800쪽이 넘어서 그만큼 용량이 커진다.
+ * 여기서 불러오면 한 번 내려받아 캐시되므로 훨씬 가볍다.
+ */
+const dictionaries = { ko, en, ja } as const;
 
 type I18nValue = {
   locale: Locale;
@@ -36,19 +48,18 @@ function fill(template: string, params?: TranslationParams): string {
  */
 export default function I18nProvider({
   locale,
-  messages,
   children,
 }: {
   locale: Locale;
-  messages: unknown;
   children: React.ReactNode;
 }) {
   const value = useMemo<I18nValue>(
     () => ({
       locale,
-      t: (key, params) => fill(lookup(messages, key) ?? key, params),
+      t: (key, params) =>
+        fill(lookup(dictionaries[locale], key) ?? lookup(ko, key) ?? key, params),
     }),
-    [locale, messages],
+    [locale],
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

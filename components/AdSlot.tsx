@@ -28,7 +28,7 @@ export default function AdSlot({
       className={["mx-auto w-full max-w-[336px]", className ?? ""].join(" ")}
     >
       {label && (
-        <p className="mb-1 text-center text-[10px] tracking-wide text-slate-400 uppercase">
+        <p className="mb-1 text-center text-[11px] tracking-wide text-slate-500 uppercase dark:text-slate-400">
           {label}
         </p>
       )}

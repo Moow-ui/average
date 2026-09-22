@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./globals.css";
 import { defaultLocale, getTranslator } from "@/lib/i18n";
 
 /**
