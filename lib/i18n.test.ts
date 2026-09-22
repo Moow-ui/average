@@ -32,3 +32,21 @@ describe("i18n", () => {
     expect(t("nav.home")).toBe("Home");
   });
 });
+
+describe("문구 안의 값 채우기", () => {
+  it("{percent} 자리에 값을 넣는다", () => {
+    expect(getTranslator("ko")("result.topPercent", { percent: "12.3" })).toBe(
+      "상위 12.3%",
+    );
+    expect(getTranslator("en")("result.topPercent", { percent: "12.3" })).toBe(
+      "Top 12.3%",
+    );
+    expect(getTranslator("ja")("result.topPercent", { percent: "12.3" })).toBe(
+      "上位12.3％",
+    );
+  });
+
+  it("값을 안 주면 원래 문구를 그대로 둔다", () => {
+    expect(getTranslator("ko")("result.topPercent")).toBe("상위 {percent}%");
+  });
+});

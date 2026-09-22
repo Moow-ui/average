@@ -24,10 +24,19 @@
 
 ## 2. 기술 스택
 - Next.js(App Router) + TypeScript + Tailwind CSS
-- 정적 생성(SSG) 위주. **서버·데이터베이스 없음**
+- **정적 내보내기(`output: "export"`)**. 결과물은 `out/` 폴더. **서버·데이터베이스 없음**
 - 모든 계산은 **브라우저 안에서만** 수행
-- 배포: Vercel (GitHub 연동)
+- 배포: **Cloudflare** (GitHub 연동). Vercel 전용 기능(`@vercel/*` 등)은 쓰지 않는다.
+- 방문자 통계는 **Cloudflare Web Analytics** 를 대시보드에서 켠다. 코드로 넣지 않는다.
 - 테스트: Vitest
+
+### 정적 배포에서 지켜야 할 것
+- `next.config.ts` 의 `redirects()` / `rewrites()` / 미들웨어는 동작하지 않는다.
+  `/` 로 들어온 방문자는 `public/index.html` 의 스크립트가 브라우저 언어를 보고 보낸다.
+- 동적 이미지 생성이 안 되므로, 공유용 OG 이미지는 `npm run build:og` 로
+  빌드할 때 미리 `public/og/*.png` 를 만들어 둔다.
+- `app/sitemap.ts` 와 `app/robots.ts` 에는 `export const dynamic = "force-static"` 이 필요하다.
+- 404 화면은 `app/not-found.tsx` → `out/404.html` 로 만들어진다.
 
 ## 3. 개인정보 (절대 규칙)
 - 사용자가 입력한 값은 **어디에도 저장하거나 전송하지 않습니다.**

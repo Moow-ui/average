@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "metric": "height",
+  "unit": "cm",
+  "updatedAt": "2026-09-22",
+  "distributions": [
+    {
+      "country": "KR",
+      "gender": "male",
+      "ageGroup": "19+",
+      "mean": null,
+      "sd": null,
+      "sampleSize": null,
+      "status": "todo",
+      "todo": "KOSIS 「시도별 연령별 성별 평균 신장 분포 현황」 표 (orgId=350, tblId=DT_35007_N130) https://kosis.kr/statHtml/statHtml.do?orgId=350&tblId=DT_35007_N130 — 만 19세 이상 남성 평균 신장(cm). 표준편차가 없으면 질병관리청 국민건강영양조사 원시자료(https://knhanes.kdca.go.kr)에서 계산해야 합니다.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 조사마다 대상 연령이 다릅니다 (한국 19세 이상 / 미국·일본 20세 이상). 실제로 쓴 기준을 여기에 적어 주세요."
+      }
+    },
+    {
+      "country": "KR",
+      "gender": "female",
+      "ageGroup": "19+",
+      "mean": null,
+      "sd": null,
+      "sampleSize": null,
+      "status": "todo",
+      "todo": "KOSIS 「시도별 연령별 성별 평균 신장 분포 현황」 표 (orgId=350, tblId=DT_35007_N130) https://kosis.kr/statHtml/statHtml.do?orgId=350&tblId=DT_35007_N130 — 만 19세 이상 여성 평균 신장(cm). 표준편차가 없으면 질병관리청 국민건강영양조사 원시자료(https://knhanes.kdca.go.kr)에서 계산해야 합니다.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 조사마다 대상 연령이 다릅니다 (한국 19세 이상 / 미국·일본 20세 이상). 실제로 쓴 기준을 여기에 적어 주세요."
+      }
+    },
+    {
+      "country": "US",
+      "gender": "male",
+      "ageGroup": "19+",
+      "mean": null,
+      "sd": null,
+      "sampleSize": null,
+      "status": "todo",
+      "todo": "CDC NCHS 「Anthropometric Reference Data for Children and Adults」 (Vital and Health Statistics Series 3) https://www.cdc.gov/nchs/data/series/sr_03/sr03-046-508.pdf — 20세 이상 남성 의 평균 신장(cm). 표에는 표준편차 대신 평균의 표준오차와 백분위수가 실려 있으므로, 표준편차는 (95백분위 − 5백분위) ÷ 3.29 로 어림하거나 NHANES 원시자료로 계산하세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 조사마다 대상 연령이 다릅니다 (한국 19세 이상 / 미국·일본 20세 이상). 실제로 쓴 기준을 여기에 적어 주세요."
+      }
+    },
+    {
+      "country": "US",
+      "gender": "female",
+      "ageGroup": "19+",
+      "mean": null,
+      "sd": null,
+      "sampleSize": null,
+      "status": "todo",
+      "todo": "CDC NCHS 「Anthropometric Reference Data for Children and Adults」 (Vital and Health Statistics Series 3) https://www.cdc.gov/nchs/data/series/sr_03/sr03-046-508.pdf — 20세 이상 여성 의 평균 신장(cm). 표에는 표준편차 대신 평균의 표준오차와 백분위수가 실려 있으므로, 표준편차는 (95백분위 − 5백분위) ÷ 3.29 로 어림하거나 NHANES 원시자료로 계산하세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 조사마다 대상 연령이 다릅니다 (한국 19세 이상 / 미국·일본 20세 이상). 실제로 쓴 기준을 여기에 적어 주세요."
+      }
+    },
+    {
+      "country": "JP",
+      "gender": "male",
+      "ageGroup": "19+",
+      "mean": null,
+      "sd": null,
+      "sampleSize": null,
+      "status": "todo",
+      "todo": "e-Stat 국민건강·영양조사 표14 「身長・体重の平均値及び標準偏差」 (sid=0003224177) https://www.e-stat.go.jp/dbview?sid=0003224177 — 20歳以上(再掲) 남성 의 身長 평균값과 표준편차. 주의: 「1歳以上」 줄이 아니라 반드시 「20歳以上」 줄을 보세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 조사마다 대상 연령이 다릅니다 (한국 19세 이상 / 미국·일본 20세 이상). 실제로 쓴 기준을 여기에 적어 주세요."
+      }
+    },
+    {
+      "country": "JP",
+      "gender": "female",
+      "ageGroup": "19+",
+      "mean": null,
+      "sd": null,
+      "sampleSize": null,
+      "status": "todo",
+      "todo": "e-Stat 국민건강·영양조사 표14 「身長・体重の平均値及び標準偏差」 (sid=0003224177) https://www.e-stat.go.jp/dbview?sid=0003224177 — 20歳以上(再掲) 여성 의 身長 평균값과 표준편차. 주의: 「1歳以上」 줄이 아니라 반드시 「20歳以上」 줄을 보세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 조사마다 대상 연령이 다릅니다 (한국 19세 이상 / 미국·일본 20세 이상). 실제로 쓴 기준을 여기에 적어 주세요."
+      }
+    }
+  ]
+}

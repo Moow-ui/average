@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "../globals.css";
+import CookieConsent from "@/components/CookieConsent";
+import I18nProvider from "@/components/I18nProvider";
+import JsonLd from "@/components/JsonLd";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
+import SiteFooter from "@/components/SiteFooter";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
   getTranslator,
   htmlLang,
   isLocale,
   locales,
-  type Locale,
 } from "@/lib/i18n";
+import { webSiteJsonLd } from "@/lib/seo";
 
 /** 세 언어 페이지를 미리 만들어 둔다 (정적 생성). */
 export function generateStaticParams() {
@@ -28,6 +32,7 @@ export async function generateMetadata({
   return {
     title: { default: t("site.name"), template: `%s | ${t("site.name")}` },
     description: t("site.description"),
+    applicationName: t("site.name"),
   };
 }
 
@@ -47,7 +52,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
 
-  const t = getTranslator(locale as Locale);
+  const t = getTranslator(locale);
 
   return (
     <html lang={htmlLang[locale]} suppressHydrationWarning>
@@ -55,30 +60,31 @@ export default async function LocaleLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-dvh flex-col">
-        <header className="border-b border-slate-200 dark:border-slate-800">
-          <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 px-4 py-3">
-            <Link
-              href={`/${locale}`}
-              className="truncate text-sm font-semibold sm:text-base"
-            >
-              {t("site.name")}
-            </Link>
-            <div className="flex shrink-0 items-center gap-2">
-              <LocaleSwitcher current={locale} />
-              <ThemeToggle label={t("theme.toggle")} />
+        <I18nProvider locale={locale}>
+          <header className="border-b border-slate-200 dark:border-slate-800">
+            <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 px-4 py-3">
+              <Link
+                href={`/${locale}`}
+                className="truncate text-sm font-semibold sm:text-base"
+              >
+                {t("site.name")}
+              </Link>
+              <div className="flex shrink-0 items-center gap-2">
+                <LocaleSwitcher current={locale} />
+                <ThemeToggle label={t("theme.toggle")} />
+              </div>
             </div>
-          </div>
-        </header>
+          </header>
 
-        <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8">
-          {children}
-        </main>
+          <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8">
+            {children}
+          </main>
 
-        <footer className="border-t border-slate-200 px-4 py-6 text-sm text-slate-500 dark:border-slate-800 dark:text-slate-400">
-          <div className="mx-auto w-full max-w-3xl">
-            <p>{t("home.privacyNote")}</p>
-          </div>
-        </footer>
+          <SiteFooter locale={locale} t={t} />
+          <CookieConsent />
+        </I18nProvider>
+
+        <JsonLd data={webSiteJsonLd(t("site.name"), t("site.description"))} />
       </body>
     </html>
   );

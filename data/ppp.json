@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "baseCurrency": "USD",
+  "updatedAt": "2026-09-22",
+  "rates": [
+    {
+      "currency": "USD",
+      "year": null,
+      "pppConversionFactor": 1,
+      "marketRate": 1,
+      "status": "ok",
+      "todo": null,
+      "citation": {
+        "source": "기준 통화",
+        "url": "https://data.worldbank.org/indicator/PA.NUS.PPP",
+        "year": 2024,
+        "license": "정의상 1",
+        "note": "USD는 기준 통화이므로 환산이 필요 없다."
+      }
+    },
+    {
+      "currency": "KRW",
+      "year": null,
+      "pppConversionFactor": null,
+      "marketRate": null,
+      "status": "todo",
+      "todo": "World Bank 「PPP conversion factor, GDP (LCU per international $)」 지표 PA.NUS.PPP 의 KOR 최신 값을 넣으세요. https://api.worldbank.org/v2/country/KOR/indicator/PA.NUS.PPP?format=json&mrv=1 (사람이 보기 좋은 화면: https://data.worldbank.org/indicator/PA.NUS.PPP). 시장환율(marketRate)은 같은 연도의 PA.NUS.FCRF 지표를 쓰세요. 두 값의 연도를 반드시 같게 맞추고 year 에 적으세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. PPP와 시장환율의 기준 연도를 같게 맞춰야 합니다."
+      }
+    },
+    {
+      "currency": "JPY",
+      "year": null,
+      "pppConversionFactor": null,
+      "marketRate": null,
+      "status": "todo",
+      "todo": "World Bank 「PPP conversion factor, GDP (LCU per international $)」 지표 PA.NUS.PPP 의 JPN 최신 값을 넣으세요. https://api.worldbank.org/v2/country/JPN/indicator/PA.NUS.PPP?format=json&mrv=1 (사람이 보기 좋은 화면: https://data.worldbank.org/indicator/PA.NUS.PPP). 시장환율(marketRate)은 같은 연도의 PA.NUS.FCRF 지표를 쓰세요. 두 값의 연도를 반드시 같게 맞추고 year 에 적으세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. PPP와 시장환율의 기준 연도를 같게 맞춰야 합니다."
+      }
+    }
+  ]
+}

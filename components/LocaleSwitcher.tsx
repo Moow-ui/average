@@ -38,7 +38,6 @@ export default function LocaleSwitcher({ current }: { current: Locale }) {
             hrefLang={locale}
             lang={locale}
             title={fullLabels[locale]}
-            aria-label={fullLabels[locale]}
             aria-current={isCurrent ? "true" : undefined}
             className={[
               "rounded px-2 py-1 whitespace-nowrap transition",
@@ -48,6 +47,8 @@ export default function LocaleSwitcher({ current }: { current: Locale }) {
             ].join(" ")}
           >
             {shortLabels[locale]}
+            {/* 화면에는 안 보이지만 화면 낭독기는 정식 이름까지 읽어 준다. */}
+            <span className="sr-only"> {fullLabels[locale]}</span>
           </Link>
         );
       })}

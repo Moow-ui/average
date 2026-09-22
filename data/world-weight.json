@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "metric": "weight",
+  "unit": "kg",
+  "updatedAt": "2026-09-22",
+  "scope": "global",
+  "status": "todo",
+  "todo": "NCD-RisC 국가별 성인 체중 자료를 받아 채우세요. 다운로드: https://ncdrisc.org/data-downloads-height.html (체중·BMI는 https://ncdrisc.org/data-downloads-adiposity.html) — 'Country-specific data' CSV 에서 최신 연도, 만 19세 이상(또는 18세 이상) 남녀별 평균과 표준편차를 나라마다 한 줄씩 넣습니다. 각 나라의 adultPopulation 은 UN World Population Prospects (https://population.un.org/wpp/) 의 성인 인구를 씁니다. 최소 80개국 이상 채워야 '세계'로 인정됩니다 (minCountries).",
+  "citation": {
+    "source": null,
+    "url": null,
+    "year": null,
+    "license": null,
+    "note": "NCD-RisC 자료를 받은 뒤 채우세요. 라이선스는 CC BY 4.0 인지 확인할 것."
+  },
+  "minCountries": 80,
+  "distributions": []
+}

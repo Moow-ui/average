@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-22",
+  "scope": "global",
+  "definition": "personal_pretax_annual",
+  "definitionNote": "세계 성인 1인당 세전 소득. PPP 기준 국제달러.",
+  "currency": "PPP_USD",
+  "incomeYear": null,
+  "status": "todo",
+  "todo": "World Inequality Database 의 세계 소득 분포를 넣으세요. https://wid.world/data/ 에서 Region = World, Indicator = 'Pre-tax national income' , Population = 'Individuals, adults(20+), equal split' 의 백분위(p10~p99.9) 값을 PPP 기준 국제달러로 받아 percentiles 에 넣습니다. 기준 연도(incomeYear)와 PPP 기준 연도를 반드시 함께 적으세요. 라이선스는 WID 이용약관(https://wid.world/terms-of-use/)을 확인하세요.",
+  "citation": {
+    "source": null,
+    "url": null,
+    "year": null,
+    "license": null,
+    "note": "WID 자료를 받은 뒤 채우세요."
+  },
+  "percentiles": []
+}
