@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-22",
+  "countries": [
+    {
+      "code": "KR",
+      "currency": "KRW",
+      "defaultUnits": {
+        "length": "cm",
+        "mass": "kg"
+      },
+      "adultPopulation": {
+        "value": null,
+        "status": "todo",
+        "todo": "KOSIS 「주민등록인구현황」 연령별 인구에서 만 19세 이상 합계를 구해 넣으세요. https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1B040A3 (또는 UN World Population Prospects 연령별 인구)",
+        "citation": {
+          "source": null,
+          "url": null,
+          "year": null,
+          "license": null
+        }
+      }
+    },
+    {
+      "code": "US",
+      "currency": "USD",
+      "defaultUnits": {
+        "length": "ftin",
+        "mass": "lb"
+      },
+      "adultPopulation": {
+        "value": null,
+        "status": "todo",
+        "todo": "US Census Bureau 「Annual Estimates of the Resident Population by Sex and Age」(NC-EST) 에서 19세 이상 합계를 구해 넣으세요. https://www.census.gov/programs-surveys/popest/data/tables.html (또는 UN World Population Prospects)",
+        "citation": {
+          "source": null,
+          "url": null,
+          "year": null,
+          "license": null
+        }
+      }
+    },
+    {
+      "code": "JP",
+      "currency": "JPY",
+      "defaultUnits": {
+        "length": "cm",
+        "mass": "kg"
+      },
+      "adultPopulation": {
+        "value": null,
+        "status": "todo",
+        "todo": "総務省統計局 「人口推計」 年齢各歳別人口 에서 19歳以上 합계를 구해 넣으세요. https://www.stat.go.jp/data/jinsui/ (또는 UN World Population Prospects)",
+        "citation": {
+          "source": null,
+          "url": null,
+          "year": null,
+          "license": null
+        }
+      }
+    }
+  ],
+  "world": {
+    "note": "세계 백분위는 아래 countries 중 자료가 준비된 나라만 성인 인구로 가중해 합친 값입니다.",
+    "coverageStatus": "partial",
+    "todo": "지금은 KR/US/JP 3개국만 들어 있어 '세계'라고 부르기 어렵습니다. NCD-RisC 국가별 자료(https://ncdrisc.org/data-downloads-height.html)로 나라 수를 늘리거나, 화면에서 '한·미·일 3개국 기준'이라고 정확히 표시해야 합니다."
+  }
+}

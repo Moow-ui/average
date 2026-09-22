@@ -32,5 +32,17 @@
   "common": {
     "dataPending": "데이터 준비 중",
     "dataPendingDesc": "이 항목의 통계 자료를 확인하는 중입니다. 확인되는 대로 공개합니다."
+  },
+  "country": {
+    "KR": "한국",
+    "US": "미국",
+    "JP": "일본",
+    "WORLD": "세계"
+  },
+  "dataStatus": {
+    "title": "통계 데이터 준비 상황",
+    "ready": "준비됨",
+    "pending": "준비 중",
+    "note": "출처가 확인된 나라만 계산에 쓰입니다."
   }
 }

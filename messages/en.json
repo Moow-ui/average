@@ -32,5 +32,17 @@
   "common": {
     "dataPending": "Data coming soon",
     "dataPendingDesc": "We're still verifying the statistics for this one. It'll go live as soon as the figures are confirmed."
+  },
+  "country": {
+    "KR": "South Korea",
+    "US": "United States",
+    "JP": "Japan",
+    "WORLD": "World"
+  },
+  "dataStatus": {
+    "title": "Data availability",
+    "ready": "Ready",
+    "pending": "Coming soon",
+    "note": "Only countries with a verified source are used in the calculation."
   }
 }

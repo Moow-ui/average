@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "definition": "personal_pretax_annual",
+  "definitionNote": "개인 세전 연소득. 가구소득이 아님.",
+  "updatedAt": "2026-09-22",
+  "entries": [
+    {
+      "country": "KR",
+      "currency": "KRW",
+      "incomeYear": null,
+      "percentiles": [],
+      "lognormal": {
+        "meanLog": null,
+        "sdLog": null
+      },
+      "status": "todo",
+      "todo": "국세청 「국세통계」 통합소득 100분위 자료 (https://tasis.nts.go.kr) 또는 통계청 「임금근로일자리 소득(보수) 결과」(https://kostat.go.kr) 에서 개인 세전 연소득 백분위(p10·p25·p50·p75·p90·p99)를 원(KRW) 단위로 넣으세요. 가구소득 표를 쓰지 않도록 주의하세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 반드시 '개인 세전 연소득'이어야 하며, 대상 범위(전체 성인 / 급여소득자만 등)를 여기에 적어 주세요."
+      }
+    },
+    {
+      "country": "US",
+      "currency": "USD",
+      "incomeYear": null,
+      "percentiles": [],
+      "lognormal": {
+        "meanLog": null,
+        "sdLog": null
+      },
+      "status": "todo",
+      "todo": "US Census Bureau PINC-01 「Selected Characteristics of People 15 Years and Over by Total Money Income」 (https://www.census.gov/data/tables/time-series/demo/income-poverty/cps-pinc.html) 에서 개인 세전 연소득 백분위를 달러 단위로 넣으세요. 임금근로자만 보려면 SSA 「Wage Statistics」(https://www.ssa.gov/cgi-bin/netcomp.cgi) 도 쓸 수 있지만, 대상 범위가 다르므로 어느 쪽을 썼는지 citation.note 에 반드시 적으세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 반드시 '개인 세전 연소득'이어야 하며, 대상 범위(전체 성인 / 급여소득자만 등)를 여기에 적어 주세요."
+      }
+    },
+    {
+      "country": "JP",
+      "currency": "JPY",
+      "incomeYear": null,
+      "percentiles": [],
+      "lognormal": {
+        "meanLog": null,
+        "sdLog": null
+      },
+      "status": "todo",
+      "todo": "国税庁 「民間給与実態統計調査」 (https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/top.htm) 의 급여계급별 분포에서 백분위를 엔(JPY) 단위로 계산해 넣으세요. 이 조사는 급여소득자만 대상이라는 점을 citation.note 에 적으세요.",
+      "citation": {
+        "source": null,
+        "url": null,
+        "year": null,
+        "license": null,
+        "note": "확인 후 채우세요. 반드시 '개인 세전 연소득'이어야 하며, 대상 범위(전체 성인 / 급여소득자만 등)를 여기에 적어 주세요."
+      }
+    }
+  ]
+}

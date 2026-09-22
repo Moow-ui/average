@@ -32,5 +32,17 @@
   "common": {
     "dataPending": "データ準備中",
     "dataPendingDesc": "この項目の統計を確認しています。確認でき次第公開します。"
+  },
+  "country": {
+    "KR": "韓国",
+    "US": "アメリカ",
+    "JP": "日本",
+    "WORLD": "世界"
+  },
+  "dataStatus": {
+    "title": "データの準備状況",
+    "ready": "準備完了",
+    "pending": "準備中",
+    "note": "出典が確認できた国のみ計算に使用します。"
   }
 }
