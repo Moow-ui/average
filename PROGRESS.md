@@ -70,19 +70,23 @@
 
 ---
 
-## Cloudflare 배포 설정
+## Cloudflare 배포 설정 (Workers)
 
-| 항목 | 값 |
+이 프로젝트는 Cloudflare **Workers** 로 배포합니다 (Pages 아님).
+
+| 대시보드 항목 | 값 |
 |---|---|
-| Framework preset | **Next.js (Static HTML Export)** |
-| Build command | `npm run build` |
-| Build output directory | `out` |
-| Node 버전 | **22** (환경변수 `NODE_VERSION=22`) |
-| 환경변수(선택) | `NEXT_PUBLIC_SITE_URL=https://실제주소` |
+| Build command | **비워 둠 (None)** — `wrangler.jsonc` 가 직접 빌드합니다 |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | `/` |
+| Build variables | `NEXT_PUBLIC_SITE_URL = https://실제주소` **(꼭 설정)** |
 
-- Workers Builds(`npx wrangler deploy`)로 배포하는 경우 `wrangler.jsonc` 가 `out/` 을 올립니다.
-  이때 **Build command 를 `npm run build` 로 반드시 채워야** 합니다 (지금 `None` 이면 빈 폴더가 올라갑니다).
-- 방문자 통계는 Cloudflare 대시보드 → Web Analytics 에서 켭니다. 코드로 넣지 않습니다.
+- `wrangler.jsonc` 의 `build.command` 가 `npm run build` 를 먼저 돌려 `out/` 을 만들고,
+  `assets.directory: "./out"` 이 그 폴더를 올립니다.
+- `.node-version` 파일로 Node 22 를 씁니다.
+- `NEXT_PUBLIC_SITE_URL` 을 넣지 않으면 빌드 로그에 경고가 뜨고 임시 주소가 쓰입니다.
+  canonical·hreflang·sitemap·공유 이미지 주소가 전부 이 값을 씁니다.
+- 방문자 통계는 대시보드 → Web Analytics 에서 켭니다. 코드로 넣지 않습니다.
 
 ---
 
@@ -117,6 +121,7 @@
 
 - Google AdSense 승인 → `components/AdSlot.tsx` 에 광고 코드 넣기
   (광고를 켤 때 `components/CookieConsent.tsx` 의 `ADS_ENABLED` 를 `true` 로)
-- Cloudflare 대시보드에서 Build command 를 `npm run build` 로, 출력 폴더를 `out` 으로 설정
-- 실제 도메인 연결 후 `NEXT_PUBLIC_SITE_URL` 환경변수 설정
+- Cloudflare 대시보드 → Settings → Variables and Secrets → Build variables 에
+  `NEXT_PUBLIC_SITE_URL` 설정 (workers.dev 주소 또는 연결한 도메인)
+- PR 병합 후 배포 브랜치를 `main` 으로 바꾸기
 - 문의용 이메일 주소 결정 → `messages/*.json` 의 `pages.contact.emailPending` 교체
