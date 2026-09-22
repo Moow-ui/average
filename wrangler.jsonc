@@ -1,0 +1,14 @@
+{
+  // Cloudflare 배포 설정.
+  // `npm run build` 로 out/ 폴더를 만든 뒤 `npx wrangler deploy` 하면 올라간다.
+  // (Cloudflare Pages 를 쓰는 경우에는 이 파일 없이 대시보드 설정만으로도 된다.)
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "average",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    // 정적으로 내보낸 결과물 폴더
+    "directory": "./out",
+    // 없는 주소로 들어오면 404.html 을 보여준다
+    "not_found_handling": "404-page"
+  }
+}

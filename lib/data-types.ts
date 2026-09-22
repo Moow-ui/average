@@ -25,6 +25,9 @@ export type Citation = {
 /** 확인된 수치인지("ok"), 아직 조사 중인지("todo"). */
 export type DataStatus = "ok" | "todo";
 
+/** p 는 하위 백분위(0~100). p:90 이면 "하위 90% 지점 = 상위 10%". */
+export type PercentilePoint = { p: number; value: number };
+
 type Sourced = {
   status: DataStatus;
   todo: string | null;
@@ -40,6 +43,53 @@ export type CountryEntry = {
   currency: string;
   defaultUnits: { length: LengthUnit; mass: MassUnit };
   adultPopulation: PopulationEntry;
+};
+
+/**
+ * 세계 자료 한 줄. 나라 코드는 NCD-RisC 표기(ISO 3166-1 alpha-3, 예: "KOR").
+ * MVP 3개국(CountryCode)과 달리 200개국까지 들어올 수 있어 string 으로 둔다.
+ */
+export type WorldCountryDistribution = {
+  country: string;
+  gender: Gender;
+  mean: number | null;
+  sd: number | null;
+  /** 그 나라 성인 인구. 세계 분포를 합칠 때 가중치로 쓴다. */
+  adultPopulation: number | null;
+};
+
+/**
+ * 세계 키·몸무게 분포 (NCD-RisC 국가별 자료).
+ * MVP 3개국을 합쳐서 "세계"라고 부르지 않는다. 이 파일이 비어 있으면
+ * 화면에는 "세계 데이터 준비 중"이 뜬다.
+ */
+export type WorldDistributionFile = {
+  version: number;
+  metric: "height" | "weight";
+  unit: "cm" | "kg";
+  updatedAt: string;
+  scope: "global";
+  status: DataStatus;
+  todo: string | null;
+  citation: Citation;
+  /** 이 숫자 이상 나라가 있어야 "세계"라고 부를 수 있다. */
+  minCountries: number;
+  distributions: WorldCountryDistribution[];
+};
+
+/** 세계 소득 분포 (World Inequality Database). 금액은 PPP 기준 국제달러. */
+export type WorldIncomeFile = {
+  version: number;
+  updatedAt: string;
+  scope: "global";
+  definition: "personal_pretax_annual";
+  definitionNote: string;
+  currency: "PPP_USD";
+  incomeYear: number | null;
+  status: DataStatus;
+  todo: string | null;
+  citation: Citation;
+  percentiles: PercentilePoint[];
 };
 
 /** "세계" 백분위가 지금 몇 개 나라를 덮고 있는지 기록해 두는 곳. */
@@ -74,9 +124,6 @@ export type DistributionFile = {
   updatedAt: string;
   distributions: Distribution[];
 };
-
-/** p 는 하위 백분위(0~100). p:90 이면 "하위 90% 지점 = 상위 10%". */
-export type PercentilePoint = { p: number; value: number };
 
 export type IncomeEntry = Sourced & {
   country: CountryCode;

@@ -61,8 +61,8 @@
     }
   ],
   "world": {
-    "note": "세계 백분위는 아래 countries 중 자료가 준비된 나라만 성인 인구로 가중해 합친 값입니다.",
+    "note": "세계 백분위는 나라별 MVP 데이터(KR/US/JP)를 합쳐서 만들지 않습니다. 키·몸무게는 data/world-height.json · world-weight.json (NCD-RisC 국가별 자료), 소득은 data/world-income.json (World Inequality Database) 만 사용합니다.",
     "coverageStatus": "partial",
-    "todo": "지금은 KR/US/JP 3개국만 들어 있어 '세계'라고 부르기 어렵습니다. NCD-RisC 국가별 자료(https://ncdrisc.org/data-downloads-height.html)로 나라 수를 늘리거나, 화면에서 '한·미·일 3개국 기준'이라고 정확히 표시해야 합니다."
+    "todo": "world-height.json / world-weight.json / world-income.json 이 채워지기 전까지 화면에는 '세계 데이터 준비 중'으로 표시하고, 3개국 값으로 대신 계산하지 않습니다."
   }
 }

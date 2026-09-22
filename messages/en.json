@@ -1,8 +1,9 @@
 {
   "site": {
     "name": "Where Do I Rank?",
-    "tagline": "See what percentile your height, weight, and income fall into.",
-    "description": "Enter your height, weight, or annual income to find out what percentile you land in worldwide and in your country. Nothing you type is ever stored or sent anywhere."
+    "shortName": "Rank",
+    "tagline": "See where your height, weight, and income land.",
+    "description": "Enter your height, weight, or annual income to see what percentile you land in worldwide and in your country. Nothing you type is stored or sent anywhere."
   },
   "nav": {
     "home": "Home",
@@ -10,7 +11,8 @@
     "sources": "Data sources",
     "privacy": "Privacy policy",
     "terms": "Terms of use",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu"
   },
   "metric": {
     "height": "Height",
@@ -24,14 +26,16 @@
   },
   "home": {
     "chooseMetric": "What would you like to compare?",
-    "privacyNote": "Everything is calculated in your browser. Your numbers never reach a server."
-  },
-  "theme": {
-    "toggle": "Toggle light and dark mode"
+    "privacyNote": "Everything is calculated in your browser. Your numbers never reach a server.",
+    "howItWorks": "How does it work?",
+    "howItWorksBody": "We use published averages and distributions from government statistics and international organisations. Height and weight are modelled with a normal distribution; income is interpolated from real percentile tables. Every figure's source and reference year is listed on the data sources page.",
+    "adultsOnly": "Figures are for adults aged 19 and over."
   },
   "common": {
     "dataPending": "Data coming soon",
-    "dataPendingDesc": "We're still verifying the statistics for this one. It'll go live as soon as the figures are confirmed."
+    "dataPendingDesc": "We're still verifying the statistics for this one. It will go live as soon as the figures are confirmed.",
+    "backToHome": "Back to home",
+    "seeAlso": "See also"
   },
   "country": {
     "KR": "South Korea",
@@ -44,5 +48,179 @@
     "ready": "Ready",
     "pending": "Coming soon",
     "note": "Only countries with a verified source are used in the calculation."
+  },
+  "form": {
+    "gender": "Sex",
+    "male": "Male",
+    "female": "Female",
+    "genderNote": "Height and weight distributions differ a lot by sex, so they are compared separately.",
+    "country": "Compare against",
+    "height": "Height",
+    "weight": "Weight",
+    "income": "Annual income",
+    "calculate": "Calculate",
+    "unitToggle": "Change units",
+    "enterValue": "Please enter a value.",
+    "outOfRange": "That value is outside the range we can handle.",
+    "feet": "ft",
+    "inches": "in"
+  },
+  "unit": {
+    "cm": "cm",
+    "ftin": "ft / in",
+    "kg": "kg",
+    "lb": "lb",
+    "manwon": "10,000 KRW",
+    "won": "KRW"
+  },
+  "result": {
+    "title": "Result",
+    "topPercent": "Top {percent}%",
+    "topExtreme": "Top {threshold}% or higher",
+    "bottomExtreme": "Bottom {threshold}% or lower",
+    "inRegion": "in {region}",
+    "average": "Average",
+    "median": "Median",
+    "difference": "Difference from average",
+    "yourValue": "Your value",
+    "worldPending": "World data coming soon",
+    "worldPendingDesc": "World rankings will appear once we have data for roughly 200 countries (NCD-RisC) and the global income distribution (World Inequality Database). We won't call three countries 'the world'.",
+    "chartLabel": "Your position on the distribution",
+    "chartAria": "Chart showing the distribution curve and your position",
+    "methodNote": {
+      "table": "Calculated by interpolating a published income percentile table.",
+      "paretoTail": "This income is above the top row of the published table, so it is estimated from the slope of the top bracket.",
+      "belowTable": "This income is below the bottom row of the published table, so the bottom value is shown.",
+      "lognormal": "No percentile table was available, so this is approximated with a lognormal distribution. It will get more accurate once a table is added."
+    }
+  },
+  "compare": {
+    "title": "Country comparison",
+    "region": "Region",
+    "rank": "Your position",
+    "average": "Average",
+    "difference": "Difference",
+    "pending": "Coming soon"
+  },
+  "bmi": {
+    "title": "BMI",
+    "value": "Your BMI",
+    "formula": "BMI = weight (kg) ÷ height (m)²",
+    "disclaimer": "This is not a medical or health diagnosis. BMI is calculated from weight and height alone, so it cannot account for muscle mass, body composition, or age. Talk to a healthcare professional about your health.",
+    "needHeight": "Enter your height as well to calculate BMI."
+  },
+  "income": {
+    "definition": "Personal pre-tax annual income",
+    "definitionNote": "This is one person's income before tax over a year — not total household income.",
+    "pppNote": "World comparisons are converted using PPP (purchasing power parity) to account for price differences between countries."
+  },
+  "explain": {
+    "title": "What does this number mean?",
+    "veryHigh": "At this level you are in a group that is rarely seen under the same conditions.",
+    "high": "This sits clearly above the average.",
+    "middle": "This is the middle of the pack, where most people are.",
+    "low": "This sits below the average.",
+    "veryLow": "At this level you are in a group that is rarely seen under the same conditions.",
+    "neutralNote": "These numbers show position only. They don't mean better or worse."
+  },
+  "neighbors": {
+    "title": "Nearby values"
+  },
+  "share": {
+    "title": "Share this result",
+    "copy": "Copy link",
+    "copied": "Copied",
+    "x": "Share on X",
+    "kakao": "Share on KakaoTalk",
+    "line": "Share on LINE",
+    "note": "Share links contain only the number you entered — no personal information."
+  },
+  "seo": {
+    "resultTitle": "{gender} {metric} {value}: what percentile?",
+    "resultDescription": "See how {gender} {metric} {value} compares in South Korea, the United States, Japan, and worldwide."
+  },
+  "faq": {
+    "q1": "Do you store what I enter?",
+    "a1": "No. Everything is calculated in your browser, and what you enter is never sent to a server or stored.",
+    "q2": "How is the percentile calculated?",
+    "a2": "Height and weight use a normal distribution built from each country's published mean and standard deviation. Income is interpolated from published percentile tables, falling back to a lognormal distribution when no table exists.",
+    "q3": "How is the 'world' ranking calculated?",
+    "a3": "We combine each country's distribution into one, weighted by adult population, rather than using a single world average. Until the country-level data is in place, it is shown as 'coming soon'."
+  },
+  "pages": {
+    "about": {
+      "title": "About",
+      "intro": "This site shows where your height, weight, and personal pre-tax annual income sit within individual countries and worldwide. It covers adults aged 19 and over.",
+      "dataTitle": "What data do we use?",
+      "dataBody": "We only use figures published by government statistical agencies and international organisations. Anything we cannot verify is marked 'data coming soon' rather than guessed. Every figure's source and reference year is listed on the data sources page.",
+      "privacyTitle": "What about privacy?",
+      "privacyBody": "What you enter never leaves your browser. All calculations happen on your device, and your number only appears in a URL if you choose to share the result.",
+      "toneTitle": "Our approach",
+      "toneBody": "Numbers show position, not worth. We don't rate or poke fun at anyone's body or income."
+    },
+    "sources": {
+      "title": "Data sources",
+      "intro": "Every statistic used on this site, with its source and reference year. Items we haven't verified are marked 'coming soon'.",
+      "empty": "No verified figures yet. They will appear in this table as soon as they are confirmed.",
+      "source": "Source",
+      "year": "Reference year",
+      "license": "Licence",
+      "pendingTitle": "Still being verified"
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "updated": "Last updated",
+      "noCollectTitle": "What we don't collect",
+      "noCollectBody": "We do not collect names, email addresses, accounts, or any other information that identifies you. The height, weight, and income you enter are calculated in your browser and are never transmitted to or stored on a server.",
+      "storageTitle": "Stored in your browser",
+      "storageBody": "Preferences such as dark mode and your choice of units are kept in your browser's local storage on your own device. They are never transmitted anywhere and can be cleared from your browser settings.",
+      "adsTitle": "Advertising",
+      "adsBody": "This site plans to show Google AdSense advertising. Ad providers may use cookies or similar technologies to serve ads, subject to their own policies. Visitors from the European Economic Area and the United Kingdom are asked for consent before advertising cookies are used.",
+      "analyticsTitle": "Analytics",
+      "analyticsBody": "Visitor counts are measured with aggregate analytics that do not track individual visitors. The numbers you enter are never included.",
+      "contactBody": "If you have questions about privacy, please get in touch through the contact page."
+    },
+    "terms": {
+      "title": "Terms of use",
+      "purposeTitle": "What this site is for",
+      "purposeBody": "This site provides reference information based on published statistics. It is for interest and reference only and is not medical, health, or financial advice.",
+      "accuracyTitle": "Accuracy",
+      "accuracyBody": "Statistics vary by survey date, age range, and methodology. We aim for accuracy but make no guarantee of completeness or currency. Decisions based on these results are your own responsibility.",
+      "contentTitle": "Content and copyright",
+      "contentBody": "Rights in the underlying statistics belong to the publishing organisations. Licence terms for each dataset are listed on the data sources page.",
+      "changeTitle": "Changes",
+      "changeBody": "These terms may change without prior notice. Any changes will be reflected on this page."
+    },
+    "contact": {
+      "title": "Contact",
+      "intro": "Spotted a wrong figure, an awkward translation, or a country or metric you'd like to see added? Please let us know.",
+      "emailLabel": "Email",
+      "emailPending": "A contact email address is being set up.",
+      "dataFixTitle": "Correcting a figure",
+      "dataFixBody": "If a figure needs correcting, please include the item along with a source (organisation, link, and reference year) and we'll verify and update it."
+    }
+  },
+  "cookie": {
+    "title": "Cookie notice",
+    "body": "This site may use cookies for advertising. The numbers you enter are never stored in cookies.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "settings": "Settings"
+  },
+  "ad": {
+    "label": "Advertisement"
+  },
+  "footer": {
+    "disclaimer": "For reference only. Not medical, health, or financial advice."
+  },
+  "theme": {
+    "toggle": "Toggle light and dark mode"
+  },
+  "og": {
+    "homeSubtitle": "Calculated from official statistics"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page may have moved or never existed. Pick a language below to continue."
   }
 }

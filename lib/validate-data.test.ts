@@ -4,7 +4,16 @@ import {
   validateDistributions,
   validateIncome,
 } from "./validate-data";
-import { countries, heightData, incomeData, pppData, weightData } from "./data";
+import {
+  countries,
+  heightData,
+  incomeData,
+  pppData,
+  weightData,
+  worldHeightData,
+  worldIncomeData,
+  worldWeightData,
+} from "./data";
 import type { Distribution, DistributionFile, IncomeFile } from "./data-types";
 
 describe("실제 /data 파일", () => {
@@ -15,6 +24,9 @@ describe("실제 /data 파일", () => {
       weight: weightData,
       income: incomeData,
       ppp: pppData,
+      worldHeight: worldHeightData,
+      worldWeight: worldWeightData,
+      worldIncome: worldIncomeData,
     });
     expect(problems).toEqual([]);
   });

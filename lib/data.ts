@@ -9,6 +9,9 @@ import heightJson from "@/data/height.json";
 import weightJson from "@/data/weight.json";
 import incomeJson from "@/data/income.json";
 import pppJson from "@/data/ppp.json";
+import worldHeightJson from "@/data/world-height.json";
+import worldWeightJson from "@/data/world-weight.json";
+import worldIncomeJson from "@/data/world-income.json";
 
 import type {
   CountriesFile,
@@ -21,6 +24,8 @@ import type {
   IncomeFile,
   PppFile,
   PppRate,
+  WorldDistributionFile,
+  WorldIncomeFile,
 } from "./data-types";
 
 export const countries = countriesJson as CountriesFile;
@@ -28,6 +33,9 @@ export const heightData = heightJson as DistributionFile;
 export const weightData = weightJson as DistributionFile;
 export const incomeData = incomeJson as IncomeFile;
 export const pppData = pppJson as PppFile;
+export const worldHeightData = worldHeightJson as WorldDistributionFile;
+export const worldWeightData = worldWeightJson as WorldDistributionFile;
+export const worldIncomeData = worldIncomeJson as WorldIncomeFile;
 
 /** 확인된 수치만 통과시킨다. 확인 전(todo)이면 undefined. */
 function onlyOk<T extends { status: string }>(entry: T | undefined): T | undefined {
@@ -44,12 +52,52 @@ export function getAdultPopulation(code: CountryCode): number | undefined {
   return entry?.value ?? undefined;
 }
 
-/**
- * "세계" 계산이 지금 몇 개 나라를 덮는지 알려준다.
- * coverageStatus 가 "partial" 이면 화면에 '몇 개국 기준'인지 밝혀야 한다.
- */
+/** 세계 관련 설명 문구와 상태. */
 export function getWorldCoverage() {
   return countries.world;
+}
+
+/**
+ * 세계 키·몸무게 분포 (NCD-RisC 국가별 자료).
+ *
+ * 중요: MVP 3개국(KR/US/JP)을 합쳐서 "세계"라고 부르지 않는다.
+ * 이 자료가 준비되기 전에는 undefined 를 돌려주고, 화면에는
+ * "세계 데이터 준비 중"이 뜬다.
+ */
+export function getWorldDistributionFile(
+  metric: "height" | "weight",
+): WorldDistributionFile | undefined {
+  const file = metric === "height" ? worldHeightData : worldWeightData;
+  return onlyOk(file);
+}
+
+/** 세계 분포를 인구 가중 혼합분포로 쓸 수 있게 성별로 추려낸다. */
+export function getWorldComponents(
+  metric: "height" | "weight",
+  gender: Gender,
+): { mean: number; sd: number; weight: number }[] | undefined {
+  const file = getWorldDistributionFile(metric);
+  if (!file) return undefined;
+
+  const components = file.distributions
+    .filter((row) => row.gender === gender)
+    .flatMap((row) =>
+      typeof row.mean === "number" &&
+      typeof row.sd === "number" &&
+      typeof row.adultPopulation === "number" &&
+      row.sd > 0 &&
+      row.adultPopulation > 0
+        ? [{ mean: row.mean, sd: row.sd, weight: row.adultPopulation }]
+        : [],
+    );
+
+  return components.length > 0 ? components : undefined;
+}
+
+/** 세계 소득 분포 (World Inequality Database). 금액은 PPP 기준 국제달러. */
+export function getWorldIncome(): WorldIncomeFile | undefined {
+  const file = onlyOk(worldIncomeData);
+  return file && file.percentiles.length >= 2 ? file : undefined;
 }
 
 export function getDistributionFile(metric: "height" | "weight"): DistributionFile {
@@ -117,6 +165,9 @@ export function collectCitations(): {
     ...weightData.distributions,
     ...incomeData.entries,
     ...pppData.rates,
+    worldHeightData,
+    worldWeightData,
+    worldIncomeData,
   ];
 
   const map = new Map<string, { source: string; url: string; year: number; license: string | null }>();
@@ -127,4 +178,36 @@ export function collectCitations(): {
     map.set(`${source}|${url}|${year}`, { source, url, year, license: license ?? null });
   }
   return [...map.values()].sort((a, b) => a.source.localeCompare(b.source));
+}
+
+/** 아직 확인하지 못한 자료 목록. "데이터 출처" 페이지에 솔직하게 보여준다. */
+export function collectPendingItems(): { where: string; todo: string }[] {
+  const items: { where: string; todo: string }[] = [];
+
+  const push = (where: string, entry: { status: string; todo: string | null }) => {
+    if (entry.status !== "ok" && entry.todo) {
+      items.push({ where, todo: entry.todo });
+    }
+  };
+
+  for (const country of countries.countries) {
+    push(`${country.code} · population`, country.adultPopulation);
+  }
+  for (const dist of heightData.distributions) {
+    push(`${dist.country} · height · ${dist.gender}`, dist);
+  }
+  for (const dist of weightData.distributions) {
+    push(`${dist.country} · weight · ${dist.gender}`, dist);
+  }
+  for (const entry of incomeData.entries) {
+    push(`${entry.country} · income`, entry);
+  }
+  for (const rate of pppData.rates) {
+    push(`${rate.currency} · PPP`, rate);
+  }
+  push("WORLD · height", worldHeightData);
+  push("WORLD · weight", worldWeightData);
+  push("WORLD · income", worldIncomeData);
+
+  return items;
 }

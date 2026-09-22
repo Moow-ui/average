@@ -43,16 +43,28 @@ function lookup(dict: unknown, path: string): string | undefined {
   return typeof value === "string" ? value : undefined;
 }
 
-export type Translator = (key: string) => string;
+/** 문구 안의 {이름} 자리에 넣을 값들. */
+export type TranslationParams = Record<string, string | number>;
+
+export type Translator = (key: string, params?: TranslationParams) => string;
+
+/** "상위 {percent}%" 의 {percent} 를 실제 값으로 바꾼다. */
+function fill(template: string, params?: TranslationParams): string {
+  if (!params) return template;
+  return template.replace(/\{(\w+)\}/g, (match, name: string) =>
+    name in params ? String(params[name]) : match,
+  );
+}
 
 /**
  * 문구를 꺼내는 함수를 만든다.
- * 사용법: const t = getTranslator("ko"); t("home.chooseMetric")
+ * 사용법: const t = getTranslator("ko"); t("result.topPercent", { percent: "12.3" })
  * 해당 언어에 문구가 없으면 한국어로, 그래도 없으면 키 자체를 돌려준다.
  */
 export function getTranslator(locale: Locale): Translator {
   const dict: Dictionary = dictionaries[locale];
-  return (key: string) => lookup(dict, key) ?? lookup(ko, key) ?? key;
+  return (key: string, params?: TranslationParams) =>
+    fill(lookup(dict, key) ?? lookup(ko, key) ?? key, params);
 }
 
 export function getMessages(locale: Locale): Dictionary {

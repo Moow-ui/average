@@ -10,6 +10,8 @@ import type {
   DistributionFile,
   IncomeFile,
   PppFile,
+  WorldDistributionFile,
+  WorldIncomeFile,
 } from "../lib/data-types";
 
 function load<T>(name: string): T {
@@ -22,6 +24,9 @@ const problems = validateAll({
   weight: load<DistributionFile>("weight.json"),
   income: load<IncomeFile>("income.json"),
   ppp: load<PppFile>("ppp.json"),
+  worldHeight: load<WorldDistributionFile>("world-height.json"),
+  worldWeight: load<WorldDistributionFile>("world-weight.json"),
+  worldIncome: load<WorldIncomeFile>("world-income.json"),
 });
 
 if (problems.length > 0) {

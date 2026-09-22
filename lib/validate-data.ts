@@ -16,6 +16,8 @@ import type {
   DistributionFile,
   IncomeFile,
   PppFile,
+  WorldDistributionFile,
+  WorldIncomeFile,
 } from "./data-types";
 import { countryCodes } from "./data-types";
 
@@ -264,12 +266,110 @@ export function validatePpp(file: PppFile, requiredCurrencies: string[]): Proble
   return problems;
 }
 
+/**
+ * 세계 키·몸무게 자료 검사.
+ * "세계"라고 부르려면 나라 수가 minCountries 이상이어야 한다.
+ */
+export function validateWorldDistributions(file: WorldDistributionFile): Problem[] {
+  const problems: Problem[] = [];
+  const fileName = `world-${file.metric}.json`;
+  const seen = new Set<string>();
+
+  checkSourced(fileName, file, [], problems);
+
+  for (const row of file.distributions) {
+    const where = `${fileName} / ${row.country} ${row.gender}`;
+    const key = `${row.country}|${row.gender}`;
+    if (seen.has(key)) {
+      problems.push({ where, message: "같은 나라·성별이 두 번 들어 있습니다" });
+    }
+    seen.add(key);
+
+    if (!/^[A-Z]{3}$/.test(row.country)) {
+      problems.push({
+        where,
+        message: "나라 코드는 알파벳 세 글자(ISO alpha-3)여야 합니다 (예: KOR)",
+      });
+    }
+    if (row.gender !== "male" && row.gender !== "female") {
+      problems.push({ where, message: 'gender 는 "male" 또는 "female" 이어야 합니다' });
+    }
+    for (const [field, value] of [
+      ["mean", row.mean],
+      ["sd", row.sd],
+      ["adultPopulation", row.adultPopulation],
+    ] as const) {
+      if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) {
+        problems.push({ where, message: `${field} 은(는) 0보다 큰 숫자여야 합니다` });
+      }
+    }
+  }
+
+  if (file.status === "ok") {
+    const countryCount = new Set(file.distributions.map((r) => r.country)).size;
+    if (countryCount < file.minCountries) {
+      problems.push({
+        where: fileName,
+        message:
+          `"세계"로 쓰려면 나라가 ${file.minCountries}개 이상 필요합니다 ` +
+          `(지금 ${countryCount}개). 부족하면 status 를 "todo" 로 두세요`,
+      });
+    }
+    for (const gender of ["male", "female"] as const) {
+      if (!file.distributions.some((r) => r.gender === gender)) {
+        problems.push({ where: fileName, message: `${gender} 자료가 하나도 없습니다` });
+      }
+    }
+  }
+
+  return problems;
+}
+
+/** 세계 소득 분포 검사 (World Inequality Database). */
+export function validateWorldIncome(file: WorldIncomeFile): Problem[] {
+  const problems: Problem[] = [];
+  const where = "world-income.json";
+
+  checkSourced(where, file, [["incomeYear", file.incomeYear]], problems);
+
+  if (file.status === "ok" && file.percentiles.length < 2) {
+    problems.push({
+      where,
+      message: 'status 가 "ok" 인데 백분위가 2개 미만입니다',
+    });
+  }
+
+  let previousP = -1;
+  let previousValue = -Infinity;
+  for (const point of file.percentiles) {
+    if (point.p <= 0 || point.p >= 100) {
+      problems.push({ where, message: `백분위 p 는 0과 100 사이여야 합니다 (${point.p})` });
+    }
+    if (point.p <= previousP) {
+      problems.push({ where, message: `백분위 p 가 커지는 순서가 아닙니다 (${point.p})` });
+    }
+    if (point.value <= previousValue) {
+      problems.push({
+        where,
+        message: `백분위가 올라가는데 소득이 늘지 않습니다 (p${point.p})`,
+      });
+    }
+    previousP = point.p;
+    previousValue = point.value;
+  }
+
+  return problems;
+}
+
 export function validateAll(files: {
   countries: CountriesFile;
   height: DistributionFile;
   weight: DistributionFile;
   income: IncomeFile;
   ppp: PppFile;
+  worldHeight: WorldDistributionFile;
+  worldWeight: WorldDistributionFile;
+  worldIncome: WorldIncomeFile;
 }): Problem[] {
   const currencies = files.countries.countries.map((c) => c.currency);
   return [
@@ -278,5 +378,8 @@ export function validateAll(files: {
     ...validateDistributions(files.weight),
     ...validateIncome(files.income),
     ...validatePpp(files.ppp, [files.ppp.baseCurrency, ...currencies]),
+    ...validateWorldDistributions(files.worldHeight),
+    ...validateWorldDistributions(files.worldWeight),
+    ...validateWorldIncome(files.worldIncome),
   ];
 }

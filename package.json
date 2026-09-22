@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run validate:data && next build",
+    "build": "npm run validate:data && npm run build:og && next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "validate:data": "tsx scripts/validate-data.ts"
+    "validate:data": "tsx scripts/validate-data.ts",
+    "build:og": "tsx scripts/build-og-images.tsx"
   },
   "dependencies": {
     "next": "^16.3.5",

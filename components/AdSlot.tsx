@@ -11,20 +11,32 @@ type AdSlotProps = {
   id: string;
   /** 확보할 높이(px). 모바일 기준. */
   height?: number;
+  /** "광고" 라는 표시 문구. 광고 정책상 표시하는 것이 안전하다. */
+  label?: string;
   className?: string;
 };
 
-export default function AdSlot({ id, height = 280, className }: AdSlotProps) {
+export default function AdSlot({
+  id,
+  height = 280,
+  label,
+  className,
+}: AdSlotProps) {
   return (
-    <div
+    <aside
       data-ad-slot={id}
-      aria-hidden="true"
-      className={[
-        "mx-auto w-full max-w-[336px] overflow-hidden rounded-lg",
-        "border border-dashed border-slate-200 dark:border-slate-800",
-        className ?? "",
-      ].join(" ")}
-      style={{ height }}
-    />
+      className={["mx-auto w-full max-w-[336px]", className ?? ""].join(" ")}
+    >
+      {label && (
+        <p className="mb-1 text-center text-[10px] tracking-wide text-slate-400 uppercase">
+          {label}
+        </p>
+      )}
+      <div
+        aria-hidden="true"
+        className="overflow-hidden rounded-lg border border-dashed border-slate-200 dark:border-slate-800"
+        style={{ height }}
+      />
+    </aside>
   );
 }
